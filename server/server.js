@@ -1,9 +1,47 @@
 const express = require("express");
+const connectMongoDB = require("./db/connection");
 const dotenv = require("dotenv").config();
 const app = express();
+const ContactsModel = require("./db/contactsModel");
+connectMongoDB();
 
-app.get("/", (req, resp) => {
-  resp.send("server homepage");
+app.use(express.json());
+
+const fetchContactsController = async () => {
+  const data = await ContactsModel.find();
+  console.log(data);
+  return await data;
+};
+const createContactsController = async (contact) => {
+  const { name, lastName, email, country, phone, about } = contact;
+
+  const data = await ContactsModel.create({
+    name,
+    lastName,
+    email,
+    country,
+    phone,
+    about,
+  });
+  console.log("contact created ====", data);
+};
+const updateContactsController = async (id, updatedContact) => {
+  const data = await ContactsModel.findByIdAndUpdate(id, updatedContact, {
+    new: true,
+  });
+  console.log(data);
+};
+app.get("/", async (req, resp) => {
+  const contacts = await fetchContactsController();
+  resp.status(201).json(contacts);
+});
+app.post("/", (req, resp) => {
+  const contacts = createContactsController(req.body);
+  resp.send("post api");
+});
+app.put("/:id", (req, resp) => {
+  const contacts = updateContactsController(req.params.id, req.body);
+  resp.send("put api");
 });
 
 app.listen(process.env.PORT, (err) => {
