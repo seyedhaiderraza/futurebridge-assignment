@@ -32,9 +32,6 @@ const defaultContactsList = [
 const ContactsCRUDContextProvider = ({ children }) => {
   const [contacts, SetContacts] = useState([...defaultContactsList]);
 
-  const values = {
-    contacts,
-  };
   const addContactHandler = (contact) => {
     SetContacts((prev) => [...prev, { id: uuid(), ...contact }]);
   };
@@ -49,6 +46,12 @@ const ContactsCRUDContextProvider = ({ children }) => {
     SetContacts(newContactList);
   };
 
+  const values = {
+    contacts,
+    addContactHandler,
+    editContactHandler,
+    deleteContactHandler,
+  };
   return (
     <ContactsContext.Provider value={values}>
       {children}
