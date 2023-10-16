@@ -2,7 +2,14 @@ const express = require("express");
 const connectMongoDB = require("./db/connection");
 const dotenv = require("dotenv").config();
 const app = express();
+const cors = require("cors");
 const ContactsModel = require("./db/contactsModel");
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE", // Define the HTTP methods you want to allow
+  })
+);
 connectMongoDB();
 
 app.use(express.json());
