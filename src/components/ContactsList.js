@@ -7,7 +7,7 @@ const ContactsList = () => {
   const { contacts } = useContext(ContactsContext);
   console.log("===from contactslist using context api====", contacts);
   const renderContacts = contacts.map((contact) => (
-    <ContactCard key={contact.id} contact={contact} />
+    <ContactCard key={contact._id} contact={contact} />
   ));
   return (
     <div className="contacts-list">

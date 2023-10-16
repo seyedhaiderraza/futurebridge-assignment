@@ -18,7 +18,7 @@ const UpdateContact = () => {
   const editContactHandler = (e) => {
     e.preventDefault();
     const updatedContact = {
-      id: contact.id,
+      _id: contact._id,
       name: name,
       lastName: lastName,
       email: email,
