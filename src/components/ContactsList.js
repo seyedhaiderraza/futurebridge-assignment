@@ -5,7 +5,6 @@ import { ContactsContext } from "../context/ContactsCRUDContext";
 import { Link } from "react-router-dom";
 const ContactsList = () => {
   const { contacts } = useContext(ContactsContext);
-  console.log("===from contactslist using context api====", contacts);
   const renderContacts = contacts.map((contact) => (
     <ContactCard key={contact._id} contact={contact} />
   ));

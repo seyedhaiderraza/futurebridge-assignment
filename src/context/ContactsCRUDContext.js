@@ -3,7 +3,6 @@ import { createContext } from "react";
 import { v4 as uuid } from "uuid";
 import api from "../api/api";
 const ContactsContext = createContext();
-console.log("=======uuid", uuid());
 const defaultContactsList = [];
 
 const ContactsCRUDContextProvider = ({ children }) => {
@@ -14,7 +13,7 @@ const ContactsCRUDContextProvider = ({ children }) => {
     SetContacts((prev) => [...prev, { _id: uuid(), ...contact }]);
   };
   const updateContactHandler = (updatedContact) => {
-    console.log("===context api === updatedcontact", updatedContact);
+    updateContact(updatedContact);
     const newContactList = contacts.filter(
       (contact) => contact._id !== updatedContact._id
     );
@@ -32,11 +31,13 @@ const ContactsCRUDContextProvider = ({ children }) => {
   const createContact = async (contact) => {
     const response = await api.post("/", contact);
     const data = await response.data;
-    console.log("===create api called ====", data);
+  };
+  const updateContact = async (contact) => {
+    const response = await api.put(`/${contact._id}`, contact);
+    const data = await response.data;
   };
   useEffect(() => {
     fetchCont();
-    console.log("===useeffect alled contacts populated");
   }, []);
 
   const values = {

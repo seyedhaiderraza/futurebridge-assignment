@@ -5,7 +5,6 @@ import { ContactsContext } from "../context/ContactsCRUDContext";
 const UpdateContact = () => {
   const location = useLocation();
   const contact = location.state.contact;
-  console.log("===contact in update", contact);
   const navigate = useNavigate();
   const { updateContactHandler } = useContext(ContactsContext);
   const [name, setName] = useState(contact.name);
@@ -26,7 +25,6 @@ const UpdateContact = () => {
       phone: phone,
       about: about,
     };
-    console.log("updatecontact=======", updatedContact);
     updateContactHandler(updatedContact);
     navigate("/");
   };

@@ -23,7 +23,6 @@ const CreateContact = () => {
       phone: phoneRef.current.value,
       about: aboutRef.current.value,
     };
-    console.log("addcontact=======", contact);
     addContactHandler(contact);
     navigate("/");
   };

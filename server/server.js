@@ -49,7 +49,7 @@ app.post("/", async (req, resp) => {
 });
 app.put("/:id", async (req, resp) => {
   const contact = await updateContactsController(req.params.id, req.body);
-  resp.status(200).json(contact);
+  resp.status(200).json("contact updated");
 });
 
 app.listen(process.env.PORT, (err) => {
