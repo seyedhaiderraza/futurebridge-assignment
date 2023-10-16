@@ -10,6 +10,7 @@ const ContactsCRUDContextProvider = ({ children }) => {
   const [contacts, SetContacts] = useState([...defaultContactsList]);
 
   const addContactHandler = (contact) => {
+    createContact(contact);
     SetContacts((prev) => [...prev, { _id: uuid(), ...contact }]);
   };
   const updateContactHandler = (updatedContact) => {
@@ -23,13 +24,17 @@ const ContactsCRUDContextProvider = ({ children }) => {
     const newContactList = contacts.filter((contact) => contact._id !== _id);
     SetContacts(newContactList);
   };
-
+  const fetchCont = async () => {
+    const response = await api.get("/");
+    const allContacts = await response.data;
+    SetContacts(allContacts);
+  };
+  const createContact = async (contact) => {
+    const response = await api.post("/", contact);
+    const data = await response.data;
+    console.log("===create api called ====", data);
+  };
   useEffect(() => {
-    const fetchCont = async () => {
-      const response = await api.get("/");
-      const allContacts = await response.data;
-      SetContacts(allContacts);
-    };
     fetchCont();
     console.log("===useeffect alled contacts populated");
   }, []);

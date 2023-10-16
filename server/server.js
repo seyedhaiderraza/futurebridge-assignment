@@ -45,7 +45,7 @@ app.get("/", async (req, resp) => {
 });
 app.post("/", async (req, resp) => {
   const contacts = await createContactsController(req.body);
-  resp.send("post api");
+  resp.status(201).json("contact created");
 });
 app.put("/:id", async (req, resp) => {
   const contact = await updateContactsController(req.params.id, req.body);
