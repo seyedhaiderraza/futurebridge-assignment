@@ -1,6 +1,7 @@
 import React, { useContext, useRef } from "react";
 import { ContactsContext } from "../context/ContactsCRUDContext";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const CreateContact = () => {
   const navigate = useNavigate();
@@ -29,6 +30,20 @@ const CreateContact = () => {
   return (
     <div className="add-contact-form">
       <h1>Add Contact Page</h1>
+      <Link to="/">
+        <button
+          className="home"
+          style={{
+            border: "none",
+            background: "blue",
+            color: "white",
+            padding: "5px",
+            borderRadius: "10px",
+          }}
+        >
+          Go Back
+        </button>
+      </Link>
       <form
         style={{
           display: "flex",

@@ -1,15 +1,19 @@
 import React from "react";
 
-const ContactCard = () => {
+const ContactCard = ({ contact }) => {
   return (
-    <div className="contact-card">
-      <div className="contact-name">Harry</div>
-      <div className="contact-lastName">Potter</div>
-      <div className="contact-email">harry@gmail.com</div>
-      <div className="contact-country">India</div>
-      <div className="contact-phone">123456789</div>
-      <div className="contact-about">I am a software engineer</div>
-    </div>
+    <>
+      <div key={contact.id} className="contact-card">
+        <h4>ContactCard</h4>
+        <button className="edit-contact">UpdateContact</button>
+        <div className="contactname">{contact.name}</div>
+        <div className="contactlastname">{contact.lastname}</div>
+        <div className="contactemail">{contact.email}</div>
+        <div className="contactcountry">{contact.country}</div>
+        <div className="contactphone">{contact.phone}</div>
+        <div className="contactabout">{contact.about}</div>
+      </div>
+    </>
   );
 };
 
