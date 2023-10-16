@@ -1,11 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ContactCard = ({ contact }) => {
   return (
     <>
-      <div key={contact.id} className="contact-card">
+      <div className="contact-card">
         <h4>ContactCard</h4>
-        <button className="edit-contact">UpdateContact</button>
+        <Link to={`/updateContact/${contact.id}`} state={{ contact: contact }}>
+          <button className="edit-contact">UpdateContact</button>
+        </Link>
         <div className="contactname">{contact.name}</div>
         <div className="contactlastname">{contact.lastname}</div>
         <div className="contactemail">{contact.email}</div>

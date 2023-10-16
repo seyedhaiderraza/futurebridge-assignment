@@ -4,6 +4,7 @@ import CreateContact from "./components/CreateContact";
 import ContactsList from "./components/ContactsList";
 import { ContactsCRUDContextProvider } from "./context/ContactsCRUDContext";
 import ContactRoutes from "./components/ContactRoutes";
+import UpdateContact from "./components/UpdateContact";
 function App() {
   return (
     <div className="App">
@@ -16,6 +17,8 @@ function App() {
             <Route path="/contactslist" element={<ContactsList />} />
 
             <Route path="/" element={<ContactRoutes />} />
+
+            <Route path="/updateContact/:id" element={<UpdateContact />} />
           </Routes>
         </Router>
       </ContactsCRUDContextProvider>

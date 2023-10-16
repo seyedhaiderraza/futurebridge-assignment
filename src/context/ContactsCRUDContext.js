@@ -5,6 +5,7 @@ const ContactsContext = createContext();
 console.log("=======uuid", uuid());
 const defaultContactsList = [
   {
+    id: 11,
     name: "harry",
     lastName: "potter",
     email: "harry@gmail.com",
@@ -13,6 +14,7 @@ const defaultContactsList = [
     about: " i am a software engineer",
   },
   {
+    id: 12,
     name: "superman",
     lastName: "super",
     email: "super@gmail.com",
@@ -21,6 +23,7 @@ const defaultContactsList = [
     about: " i am a ssuper star",
   },
   {
+    id: 13,
     name: "batman",
     lastName: "bat",
     email: "bat@gmail.com",
@@ -35,7 +38,8 @@ const ContactsCRUDContextProvider = ({ children }) => {
   const addContactHandler = (contact) => {
     SetContacts((prev) => [...prev, { id: uuid(), ...contact }]);
   };
-  const editContactHandler = (updatedContact) => {
+  const updateContactHandler = (updatedContact) => {
+    console.log("===context api === updatedcontact", updatedContact);
     const newContactList = contacts.filter(
       (contact) => contact.id !== updatedContact.id
     );
@@ -49,7 +53,7 @@ const ContactsCRUDContextProvider = ({ children }) => {
   const values = {
     contacts,
     addContactHandler,
-    editContactHandler,
+    updateContactHandler,
     deleteContactHandler,
   };
   return (
