@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createContext } from "react";
 import { v4 as uuid } from "uuid";
+import api from "../api/api";
 const ContactsContext = createContext();
 console.log("=======uuid", uuid());
 const defaultContactsList = [
@@ -32,6 +33,13 @@ const defaultContactsList = [
     about: " i am a hero",
   },
 ];
+
+const fetchAPI = async () => {
+  const data = await api.get("/");
+  return await data;
+};
+
+console.log(fetchAPI());
 const ContactsCRUDContextProvider = ({ children }) => {
   const [contacts, SetContacts] = useState([...defaultContactsList]);
 

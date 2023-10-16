@@ -29,19 +29,20 @@ const updateContactsController = async (id, updatedContact) => {
   const data = await ContactsModel.findByIdAndUpdate(id, updatedContact, {
     new: true,
   });
-  console.log(data);
+  console.log("updated contact", data);
+  return data;
 };
 app.get("/", async (req, resp) => {
   const contacts = await fetchContactsController();
   resp.status(201).json(contacts);
 });
-app.post("/", (req, resp) => {
-  const contacts = createContactsController(req.body);
+app.post("/", async (req, resp) => {
+  const contacts = await createContactsController(req.body);
   resp.send("post api");
 });
-app.put("/:id", (req, resp) => {
-  const contacts = updateContactsController(req.params.id, req.body);
-  resp.send("put api");
+app.put("/:id", async (req, resp) => {
+  const contact = await updateContactsController(req.params.id, req.body);
+  resp.status(200).json(contact);
 });
 
 app.listen(process.env.PORT, (err) => {
